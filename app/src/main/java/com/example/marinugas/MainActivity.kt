@@ -14,5 +14,10 @@ class MainActivity : AppCompatActivity() {
         btn_detail.setOnClickListener {
             startActivity(Intent(this@MainActivity, detail_tugas::class.java))
         }
+
+        val btn_list = findViewById<Button>(R.id.btn_list)
+        btn_list.setOnClickListener {
+            startActivity(Intent(this@MainActivity, list_tugas::class.java))
+        }
     }
 }
