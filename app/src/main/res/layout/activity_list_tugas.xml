@@ -22,14 +22,16 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp">
 
+
                 <CheckBox
                     android:id="@+id/checkbox_list"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="350dp"
-                    android:layout_centerVertical="true"
-                    android:onClick="onCheckboxClicked" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="new checkbox"
+                    android:textSize="16sp"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    android:buttonTint="#000000"/>
 
                 <TextView
                     android:id="@+id/titleTextView"
