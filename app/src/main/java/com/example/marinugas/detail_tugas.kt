@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import java.util.Calendar
 
@@ -29,6 +30,12 @@ class detail_tugas : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Ti
         setContentView(R.layout.activity_detail_tugas)
         pickDate()
         pickTime()
+
+        val btn_back = findViewById<ImageView>(R.id.btn_back)
+
+        btn_back.setOnClickListener {
+            finish()
+        }
     }
 
     private fun getDateCalendar(){

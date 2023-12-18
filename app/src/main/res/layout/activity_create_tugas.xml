@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".create_tugas">
 
+    <TextView
+        android:id="@+id/titleAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Tambahkan Tugas"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/img_back"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/baseline_arrow_circle_left_24"
+        android:onClick="onBackButtonClicked"
+        app:layout_constraintRight_toLeftOf="@id/titleAddTask"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

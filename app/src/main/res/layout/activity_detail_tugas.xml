@@ -7,6 +7,28 @@
     tools:context=".detail_tugas">
 
     <TextView
+        android:id="@+id/titleDetailTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="21dp"
+        android:text="@string/DetailTask"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"/>
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="4640dp"
+        android:src="@drawable/baseline_arrow_circle_left_24"
+        app:layout_constraintRight_toLeftOf="@id/titleDetailTask"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
         android:id="@+id/textTenggat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
