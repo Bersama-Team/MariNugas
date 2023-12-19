@@ -3,16 +3,31 @@ package com.example.marinugas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.marinugas.data.ListTugas
+import com.example.marinugas.databinding.ActivityMainBinding
+import com.example.marinugas.rest.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val dataList = mutableListOf<TugasModel>()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        retrieveListTugas()
 
         val img_add = findViewById<ImageView>(R.id.img_add)
         img_add.setOnClickListener {
@@ -29,5 +44,41 @@ class MainActivity : AppCompatActivity() {
         dataList.add(TugasModel("Judul Tugas 2", "Tenggat 2", "Deskripsi Tugas 2"))
 
 
+    }
+
+    private fun retrieveListTugas() {
+        RetrofitClient.instance.getListTugas()
+            .enqueue(object: Callback<ArrayList<ListTugas>> {
+                override fun onResponse(call: Call<ArrayList<ListTugas>>, response: Response<ArrayList<ListTugas>>) {
+                    if (response.code() == 200) {
+                        val list = response.body()
+                        Log.d("GET LIST TUGAS", list.toString())
+
+                        if (list!!.isEmpty()) {
+                            Toast.makeText(this@MainActivity, "There is no data to display", Toast.LENGTH_LONG).show()
+                        } else {
+                            buildListTugas(list)
+                        }
+                    } else {
+                        Toast.makeText(this@MainActivity, "Fail fetching from database response is not 200", Toast.LENGTH_LONG).show()
+                        Log.d("GET COUNTRY ITEMS FAIL ${response.code()}", response.body().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<ListTugas>>, t: Throwable) {
+                    Toast.makeText(this@MainActivity, "Fail fetching from database onFailure", Toast.LENGTH_LONG).show()
+                    Log.d("GET LIST TUGAS FAIL", t.toString())
+                }
+            })
+    }
+
+    private fun buildListTugas(countries: ArrayList<ListTugas>) {
+        val countryAdapter = ListTugasAdapter(list) { tugas: ListTugas ->
+            ListTugasClicked(tugas)
+        }
+
+        binding.rvCountries.adapter = countryAdapter
+        binding.rvCountries.layoutManager = LinearLayoutManager(this@MainActivity,
+            LinearLayoutManager.VERTICAL, false)
     }
 }
