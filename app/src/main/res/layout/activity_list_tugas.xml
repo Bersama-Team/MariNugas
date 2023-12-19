@@ -27,10 +27,10 @@
                     android:id="@+id/checkbox_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="new checkbox"
-                    android:textSize="16sp"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7"
+
+                    android:textSize="20sp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:buttonTint="#000000"/>
 
                 <TextView
@@ -41,7 +41,9 @@
                     android:text="Ini adalah judul konten"
                     android:textColor="#66531D"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp"
+                    app:layout_constraintLeft_toRightOf="@+id/checkbox_list"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <ImageView
                     android:id="@+id/deleteButton"
@@ -49,6 +51,8 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="30dp"
+                    app:layout_constraintLeft_toRightOf="@+id/checkbox_list"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:src="@drawable/baseline_delete_24"/>
             </RelativeLayout>
 
