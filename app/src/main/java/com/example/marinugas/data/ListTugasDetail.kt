@@ -1,7 +1,7 @@
-package com.example.marinugas
+package com.example.marinugas.data
 import java.time.LocalDateTime
 
-data class ListTugas(
+data class ListTugasDetail(
     val id: Int,
     val judul: String?,
     val deskripsi: String?,
