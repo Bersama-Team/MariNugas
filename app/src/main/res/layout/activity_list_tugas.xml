@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
@@ -44,23 +44,33 @@
                 android:layout_alignBaseline="@+id/checkbox_list"
                 android:layout_marginStart="4dp"
                 android:layout_toEndOf="@+id/checkbox_list"
+                tools:text="Pratikum Mobile asda asdads asdasd sdasd asdadas asdasda"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/contentTanggalview"
                 app:layout_constraintStart_toStartOf="@+id/contentTanggalview"
-                android:text="Pratikum Mobile"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:maxLines="1"
+                />
 
             <TextView
                 android:id="@+id/contentTanggalview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/titleTextView"
-                app:layout_constraintBottom_toTopOf="@+id/contentTextview"
-                app:layout_constraintStart_toStartOf="@+id/contentTextview"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_toEndOf="@+id/checkbox_list"
-                android:text="20/12/2023 23.59" />
+                tools:text="20/12/2023" />
+
+            <TextView
+                android:id="@+id/contentJamview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleTextView"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/contentTanggalview"
+                tools:text="23.59" />
 
             <TextView
                 android:id="@+id/contentTextview"
@@ -70,8 +80,8 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="4dp"
                 android:layout_toEndOf="@+id/checkbox_list"
-                android:maxLines="3"
-                android:text="Membuat aplikasi mobile" />
+                android:maxLines="1"
+                tools:text="Membuat aplikasi mobile sdfsdfdss sdfsdf sdfsdfdsdf dfsdfs asdad" />
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
