@@ -6,4 +6,7 @@
     </style>
 
     <style name="Theme.MariNugas" parent="Base.Theme.MariNugas" />
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" />
+
 </resources>
