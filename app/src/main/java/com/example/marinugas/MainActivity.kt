@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        retrieveListTugas()
+        //retrieveListTugas()
 
         val img_add = findViewById<ImageView>(R.id.img_add)
         img_add.setOnClickListener {
@@ -42,6 +42,20 @@ class MainActivity : AppCompatActivity() {
         dataList.add(TugasModel("Judul Tugas 1", "Tenggat 1", "Deskripsi Tugas 1"))
         dataList.add(TugasModel("Judul Tugas 2", "Tenggat 2", "Deskripsi Tugas 2"))
 
+        adapter.setOnItemClickListener(object : TugasAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+                // Handle item click here
+                val clickedItem = dataList[position]
+                Toast.makeText(this@MainActivity, "Clicked: ${clickedItem.title}", Toast.LENGTH_SHORT).show()
+
+                // Contoh pindah ke detail activity
+               val intent = Intent(this@MainActivity, detail_tugas::class.java)
+                intent.putExtra("title", clickedItem.title)
+                intent.putExtra("date", clickedItem.date)
+                intent.putExtra("content", clickedItem.content)
+                startActivity(intent)
+            }
+        })
 
     }
 

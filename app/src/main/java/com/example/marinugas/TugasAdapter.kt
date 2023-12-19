@@ -12,12 +12,35 @@ import androidx.recyclerview.widget.RecyclerView
 class TugasAdapter(private val context: Context, private val dataList: List<TugasModel>) :
     RecyclerView.Adapter<TugasAdapter.TugasViewHolder>() {
 
+    private lateinit var mListener : onItemClickListener
+
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+
+        mListener = listener
+
+    }
+
     inner class TugasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val checkboxList: CheckBox = itemView.findViewById(R.id.checkbox_list)
         val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val contentTanggalView: TextView = itemView.findViewById(R.id.contentTanggalview)
         val contentTextView: TextView = itemView.findViewById(R.id.contentTextview)
+
+        init{
+
+            itemView.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(adapterPosition)
+                }}
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TugasViewHolder {
@@ -25,6 +48,7 @@ class TugasAdapter(private val context: Context, private val dataList: List<Tuga
             LayoutInflater.from(context).inflate(R.layout.activity_list_tugas, parent, false)
         return TugasViewHolder(view)
     }
+
 
     override fun onBindViewHolder(holder: TugasViewHolder, position: Int) {
         val data = dataList[position]
