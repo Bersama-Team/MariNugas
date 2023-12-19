@@ -9,7 +9,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marinugas.data.ListTugas
 import com.example.marinugas.databinding.ActivityMainBinding
 import com.example.marinugas.rest.RetrofitClient
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                         if (list!!.isEmpty()) {
                             Toast.makeText(this@MainActivity, "There is no data to display", Toast.LENGTH_LONG).show()
                         } else {
-                            buildListTugas(list)
+//                            buildListTugas(list)
                         }
                     } else {
                         Toast.makeText(this@MainActivity, "Fail fetching from database response is not 200", Toast.LENGTH_LONG).show()
@@ -72,13 +71,4 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun buildListTugas(countries: ArrayList<ListTugas>) {
-        val countryAdapter = ListTugasAdapter(list) { tugas: ListTugas ->
-            ListTugasClicked(tugas)
-        }
-
-        binding.rvCountries.adapter = countryAdapter
-        binding.rvCountries.layoutManager = LinearLayoutManager(this@MainActivity,
-            LinearLayoutManager.VERTICAL, false)
-    }
 }
