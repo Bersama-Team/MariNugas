@@ -1,3 +1,5 @@
+package com.example.marinugas.rest
+
 import retrofit2.Call
 import com.example.marinugas.ListTugas
 import com.example.marinugas.ListTugasDetail
