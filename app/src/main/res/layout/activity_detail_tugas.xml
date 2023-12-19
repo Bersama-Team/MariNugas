@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".detail_tugas">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/baseline_arrow_circle_left_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/titleDetailTask"
@@ -14,20 +24,70 @@
         android:text="@string/DetailTask"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/btn_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"/>
+        app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintTop_toTopOf="@id/btn_back"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back"/>
 
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="8dp"
-        android:layout_marginStart="4640dp"
-        android:src="@drawable/baseline_arrow_circle_left_24"
-        app:layout_constraintRight_toLeftOf="@id/titleDetailTask"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    <TextView
+        android:id="@+id/textjudul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Edit Judul Tugas"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/edJudull"
+        app:layout_constraintTop_toBottomOf="@id/titleDetailTask"
+         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edJudull"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:hint="Buat judul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textjudul"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edJudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textDeskripsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Edit Deskripsi Tugas"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/edDeskl"
+        app:layout_constraintTop_toBottomOf="@id/edJudull"
+         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edDeskl"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:hint="Buat deskripsi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textDeskripsi"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edDesk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/textTenggat"
         android:layout_width="wrap_content"
@@ -40,21 +100,20 @@
         app:layout_constraintStart_toStartOf="@+id/btn_datePicker"
         android:layout_marginBottom="5dp" />
 
-
     <Button
         android:id="@+id/btn_datePicker"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:backgroundTint="#FED96D"
         android:text="Pilih Tanggal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_timePicker"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintWidth_default="wrap"
-        android:layout_marginBottom="20dp"
         android:textColor="#66531D"
         app:cornerRadius="10dp"
-        android:backgroundTint="#FED049"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_timePicker"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="wrap" />
 
     <Button
         android:id="@+id/btn_timePicker"
@@ -63,12 +122,25 @@
         android:text="Pilih Jam"
         app:layout_constraintStart_toEndOf="@+id/btn_datePicker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_simpan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintWidth_default="wrap"
         android:layout_marginBottom="20dp"
         android:textColor="#66531D"
         app:cornerRadius="10dp"
-        android:backgroundTint="#FED049"
-        />
+        android:backgroundTint="#FED96D" />
+
+    <Button
+        android:id="@+id/btn_simpan"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:text="Simpan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:textColor="#66531D"
+        app:cornerRadius="10dp"
+        android:backgroundTint="#FED049"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

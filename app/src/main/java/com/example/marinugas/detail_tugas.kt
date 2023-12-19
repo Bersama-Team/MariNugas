@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import java.util.Calendar
+import com.google.android.material.textfield.TextInputEditText
 
 class detail_tugas : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
@@ -31,10 +32,13 @@ class detail_tugas : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Ti
         pickDate()
         pickTime()
 
+        val edJudul = findViewById<TextInputEditText>(R.id.edJudul)
+        val edDesk = findViewById<TextInputEditText>(R.id.edDesk)
         val btn_back = findViewById<ImageView>(R.id.btn_back)
 
         btn_back.setOnClickListener {
             finish()
+
         }
     }
 

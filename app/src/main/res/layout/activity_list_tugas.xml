@@ -1,78 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="horizontal">
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <CheckBox
+                android:id="@+id/checkbox_list"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:buttonTint="#000000"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:textSize="20sp" />
 
+            <ImageView
+                android:id="@+id/deleteButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/baseline_delete_24" />
 
-                <CheckBox
-                    android:id="@+id/checkbox_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="20sp"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:buttonTint="#000000"/>
-
-                <TextView
-                    android:id="@+id/titleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:text="Ini adalah judul konten"
-                    android:textColor="#66531D"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    app:layout_constraintLeft_toRightOf="@+id/checkbox_list"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <ImageView
-                    android:id="@+id/deleteButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="30dp"
-                    app:layout_constraintLeft_toRightOf="@+id/checkbox_list"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/baseline_delete_24"/>
-            </RelativeLayout>
-
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/checkbox_list"
+                android:layout_marginStart="4dp"
+                android:layout_toEndOf="@+id/checkbox_list"
+                app:layout_constraintBottom_toTopOf="@+id/contentTanggalview"
+                app:layout_constraintStart_toStartOf="@+id/contentTanggalview"
+                android:text="Pratikum Mobile"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/contentTanggalview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ini adalah tanggal"
-                android:layout_marginStart="50dp"
-                android:maxLines="3"
-                android:layout_marginTop="4dp"/>
+                android:layout_below="@+id/titleTextView"
+                app:layout_constraintBottom_toTopOf="@+id/contentTextview"
+                app:layout_constraintStart_toStartOf="@+id/contentTextview"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/checkbox_list"
+                android:text="20/12/2023 23.59" />
+
             <TextView
                 android:id="@+id/contentTextview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ini adalah tugas ku hari ini"
-                android:layout_marginStart="50dp"
+                android:layout_below="@+id/contentTanggalview"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/checkbox_list"
                 android:maxLines="3"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+                android:text="Membuat aplikasi mobile" />
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
