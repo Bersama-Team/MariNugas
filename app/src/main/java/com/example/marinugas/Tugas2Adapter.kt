@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Tugas2Adapter(val tugas: ArrayList<Tugas2Model.Data>
+class Tugas2Adapter(
+    val tugas: ArrayList<Tugas2Model.Data>,
+    val listener: OnAdapterListener,
 ): RecyclerView.Adapter<Tugas2Adapter.ViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -22,6 +24,9 @@ class Tugas2Adapter(val tugas: ArrayList<Tugas2Model.Data>
         holder.contentTextview.text = data.deskripsi
         holder.contentTanggalview.text = data.tenggat_tanggal
         holder.contentJamview.text = data.tenggat_jam
+        holder.itemView.setOnClickListener {
+            listener.onClick( data )
+        }
 
     }
 
@@ -41,6 +46,10 @@ class Tugas2Adapter(val tugas: ArrayList<Tugas2Model.Data>
         tugas.clear()
         tugas.addAll(data)
         notifyDataSetChanged()
+    }
+
+    interface OnAdapterListener {
+        fun onClick(judul: Tugas2Model.Data)
     }
 
 }

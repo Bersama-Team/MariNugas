@@ -22,4 +22,15 @@ interface Api2Endpoint {
         @Field("tenggat_jam") tenggatJam: String,
         @Field("status") status: String = "unfinished"
     ) : Call<Submit2Model>
+
+    @FormUrlEncoded
+    @POST("update.php")
+    fun update(
+        @Field("id") id: String,
+        @Field("judul") judul: String,
+        @Field("deskripsi") deskripsi: String,
+        @Field("tenggat_tanggal") tenggatTanggal: String,
+        @Field("tenggat_jam") tenggatJam: String,
+        @Field("status") status: String = "unfinished"
+    ) : Call<Submit2Model>
 }

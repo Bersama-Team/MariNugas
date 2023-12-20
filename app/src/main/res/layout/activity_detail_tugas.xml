@@ -8,7 +8,7 @@
     tools:context=".detail_tugas">
 
     <ImageView
-        android:id="@+id/btn_back"
+        android:id="@+id/img_back"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
@@ -24,9 +24,9 @@
         android:text="@string/DetailTask"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/btn_back"
-        app:layout_constraintTop_toTopOf="@id/btn_back"
-        app:layout_constraintBottom_toBottomOf="@id/btn_back"/>
+        app:layout_constraintStart_toEndOf="@id/img_back"
+        app:layout_constraintTop_toTopOf="@id/img_back"
+        app:layout_constraintBottom_toBottomOf="@id/img_back"/>
 
     <TextView
         android:id="@+id/textjudul"
@@ -134,7 +134,7 @@
         android:id="@+id/btn_simpan"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
-        android:text="Simpan"
+        android:text="Simpan Perubahan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

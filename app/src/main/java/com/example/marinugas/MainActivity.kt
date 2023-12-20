@@ -51,7 +51,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupList() {
-        tugas2Adapter = Tugas2Adapter(arrayListOf())
+        tugas2Adapter = Tugas2Adapter(arrayListOf(), object :  Tugas2Adapter.OnAdapterListener {
+            override fun onClick(judul: Tugas2Model.Data) {
+                startActivity(Intent(this@MainActivity, detail_tugas::class.java)
+                    .putExtra("judul", judul)
+                )
+            }
+
+        })
         listTugas.adapter = tugas2Adapter
     }
 

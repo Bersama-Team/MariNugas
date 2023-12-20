@@ -72,7 +72,13 @@ class create_tugas : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Ti
                             call: Call<Submit2Model>,
                             response: Response<Submit2Model>
                         ) {
-                            TODO("Not yet implemented")
+                            if (response.isSuccessful) {
+                                val submit = response.body()
+                                Toast.makeText(
+                                    applicationContext, submit!!.message, Toast.LENGTH_SHORT
+                                ).show()
+                                finish()
+                            }
                         }
 
                         override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
