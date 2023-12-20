@@ -20,7 +20,7 @@ import android.app.Dialog
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var tugas2Adapter: Tugas2Adapter
     private lateinit var imgAdd: FloatingActionButton
     private lateinit var listTugas: RecyclerView
@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupView() {
         listTugas = findViewById(R.id.list_tugas)
         imgAdd = findViewById(R.id.img_add)
-
     }
 
     private fun setupList() {
@@ -56,19 +55,12 @@ class MainActivity : AppCompatActivity() {
                         .putExtra("judul", judul)
                 )
             }
-            override fun onDelete(note: Tugas2Model.Data){
+
+            override fun onDelete(note: Tugas2Model.Data) {
                 showDeleteConfirmationDialog(note)
             }
-
-
         })
         listTugas.adapter = tugas2Adapter
-    }
-
-    private fun setupListener(){
-        imgAdd.setOnClickListener {
-            startActivity(Intent(this, create_tugas::class.java))
-        }
     }
 
     private fun showDeleteConfirmationDialog(note: Tugas2Model.Data) {
@@ -97,47 +89,23 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
+                    // Handle failure
                 }
             })
 
             dialog.dismiss()
         }
 
-            override fun onDelete(note: Tugas2Model.Data) {
-                api.delete(note.id!!)
-                    .enqueue(object : Callback<Submit2Model> {
-                        override fun onResponse(
-                            call: Call<Submit2Model>,
-                            response: Response<Submit2Model>
-                        ) {
-                            if (response.isSuccessful) {
-                                val submit = response.body()
-                                Toast.makeText(
-                                    applicationContext,
-                                    submit!!.message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                getTugas()
-                            }
-                        }
-
-                        override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
-                            // Handle failure
-                        }
-                    })
-            }
-        })
-        listTugas.adapter = tugas2Adapter
+        dialog.show()
     }
 
     private fun setupListener() {
         imgAdd.setOnClickListener {
             startActivity(Intent(this, create_tugas::class.java))
         }
-        dialog.show()
     }
 
-    private fun getTugas(){
+    private fun getTugas() {
         api.data().enqueue(object : Callback<Tugas2Model> {
             override fun onResponse(call: Call<Tugas2Model>, response: Response<Tugas2Model>) {
                 if (response.isSuccessful) {
@@ -165,5 +133,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 }
