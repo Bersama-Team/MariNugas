@@ -74,4 +74,5 @@ class TugasAdapter(private val context: Context, private val dataList: List<Tuga
     override fun getItemCount(): Int {
         return dataList.size
     }
+
 }
