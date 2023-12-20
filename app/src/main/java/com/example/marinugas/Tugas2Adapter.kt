@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.app.AlertDialog
 
 class Tugas2Adapter(
     val tugas: ArrayList<Tugas2Model.Data>,
@@ -55,5 +56,6 @@ class Tugas2Adapter(
         fun onClick(judul: Tugas2Model.Data)
         fun onDelete(judul: Tugas2Model.Data)
     }
+
 
 }

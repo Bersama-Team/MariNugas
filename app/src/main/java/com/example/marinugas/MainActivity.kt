@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.app.Dialog
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,25 +56,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
             override fun onDelete(note: Tugas2Model.Data){
-                api.delete(note.id!!)
-                    .enqueue(object : Callback<Submit2Model> {
-                        override fun onResponse(
-                            call: Call<Submit2Model>,
-                            response: Response<Submit2Model>
-                        ) {
-                            if (response.isSuccessful){
-                                val submit = response.body()
-                                Toast.makeText(
-                                    applicationContext,
-                                    submit!!.message
-                                    , Toast.LENGTH_SHORT
-                                ).show()
-                                getTugas()
-                            }
-                        }
-                        override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
-                        }
-                    })
+                showDeleteConfirmationDialog(note)
             }
 
 
@@ -87,6 +70,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showDeleteConfirmationDialog(note: Tugas2Model.Data) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_delete_confirmation)
+
+        val btnCancel = dialog.findViewById<Button>(R.id.btnCancel)
+        val btnDelete = dialog.findViewById<Button>(R.id.btnDelete)
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnDelete.setOnClickListener {
+            api.delete(note.id!!).enqueue(object : Callback<Submit2Model> {
+                override fun onResponse(call: Call<Submit2Model>, response: Response<Submit2Model>) {
+                    if (response.isSuccessful) {
+                        val submit = response.body()
+                        Toast.makeText(
+                            applicationContext,
+                            submit!!.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        getTugas()
+                    }
+                }
+
+                override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
+                }
+            })
+
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
 
     private fun getTugas(){
         api.data().enqueue(object : Callback<Tugas2Model> {
