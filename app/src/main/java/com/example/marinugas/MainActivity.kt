@@ -57,6 +57,28 @@ class MainActivity : AppCompatActivity() {
                     .putExtra("judul", judul)
                 )
             }
+            override fun onDelete(note: Tugas2Model.Data){
+                api.delete(note.id!!)
+                    .enqueue(object : Callback<Submit2Model> {
+                        override fun onResponse(
+                            call: Call<Submit2Model>,
+                            response: Response<Submit2Model>
+                        ) {
+                            if (response.isSuccessful){
+                                val submit = response.body()
+                                Toast.makeText(
+                                    applicationContext,
+                                    submit!!.message
+                                    , Toast.LENGTH_SHORT
+                                ).show()
+                                getTugas()
+                            }
+                        }
+                        override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
+                        }
+                    })
+            }
+
 
         })
         listTugas.adapter = tugas2Adapter

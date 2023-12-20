@@ -27,6 +27,9 @@ class Tugas2Adapter(
         holder.itemView.setOnClickListener {
             listener.onClick( data )
         }
+        holder.deleteButton.setOnClickListener {
+            listener.onDelete( data )
+        }
 
     }
 
@@ -50,6 +53,7 @@ class Tugas2Adapter(
 
     interface OnAdapterListener {
         fun onClick(judul: Tugas2Model.Data)
+        fun onDelete(judul: Tugas2Model.Data)
     }
 
 }

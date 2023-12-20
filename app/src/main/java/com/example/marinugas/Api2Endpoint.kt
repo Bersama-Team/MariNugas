@@ -33,4 +33,10 @@ interface Api2Endpoint {
         @Field("tenggat_jam") tenggatJam: String,
         @Field("status") status: String = "unfinished"
     ) : Call<Submit2Model>
+
+    @FormUrlEncoded
+    @POST("delete.php")
+    fun delete(
+        @Field("id") id: String,
+    ) : Call<Submit2Model>
 }
