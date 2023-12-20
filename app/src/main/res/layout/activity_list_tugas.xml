@@ -43,7 +43,7 @@
                 android:layout_alignBaseline="@+id/checkbox_list"
                 android:layout_marginStart="4dp"
                 android:layout_toEndOf="@+id/checkbox_list"
-                tools:text="Pratikum Mobile asda asdads asdasd sdasd asdadas asdasda"
+                tools:text="Pratikum Mobile "
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/contentTanggalview"
@@ -80,7 +80,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_toEndOf="@+id/checkbox_list"
                 android:maxLines="1"
-                tools:text="Membuat aplikasi mobile sdfsdfdss sdfsdf sdfsdfdsdf dfsdfs asdad" />
+                tools:text="Membuat aplikasi mobile " />
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

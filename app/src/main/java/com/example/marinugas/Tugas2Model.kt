@@ -10,5 +10,5 @@ class Tugas2Model (
                      val deskripsi: String?,
                      val tenggat_tanggal: String?,
                      val tenggat_jam: String?,
-                     val status: String) : Serializable
+                     var status: String) : Serializable
 }

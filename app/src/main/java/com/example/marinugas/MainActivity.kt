@@ -59,8 +59,60 @@ class MainActivity : AppCompatActivity() {
             override fun onDelete(note: Tugas2Model.Data) {
                 showDeleteConfirmationDialog(note)
             }
+
+            override fun onCheckButtonClicked(data: Tugas2Model.Data) {
+
+                // Simpan nilai-nilai yang sudah ada sebelum update
+                val existingJudul = data.judul ?: ""
+                val existingDeskripsi = data.deskripsi ?: ""
+                val existingTenggatTanggal = data.tenggat_tanggal ?: ""
+                val existingTenggatJam = data.tenggat_jam ?: ""
+
+                // Update status only
+                val updatedStatus = if (data.status == "finished") "unfinished" else "finished"
+                data.status = updatedStatus
+
+                // Call the Retrofit update function, using existing values for other parameters
+                val call = api.update(
+                    id = data.id ?: "",
+                    judul = existingJudul,
+                    deskripsi = existingDeskripsi,
+                    tenggatTanggal = existingTenggatTanggal,
+                    tenggatJam = existingTenggatJam,
+                    status = updatedStatus
+                )
+                fun refreshAdapter() {
+                    tugas2Adapter.notifyDataSetChanged()
+                }
+                call.enqueue(object : Callback<Submit2Model> {
+                    override fun onResponse(call: Call<Submit2Model>, response: Response<Submit2Model>) {
+                        if (response.isSuccessful) {
+                            // Pembaruan berhasil, muat ulang data dari server
+                            getTugas() // Misalkan ini adalah fungsi untuk memuat data tugas dari server
+                        } else {
+                            // Tangani jika terjadi kesalahan saat melakukan permintaan
+                            // Kembalikan status ke kondisi sebelumnya jika permintaan gagal
+                            data.status = if (data.status == "finished") "unfinished" else "finished"
+                            // Perbarui tampilan karena perubahan status gagal terkirim ke server
+                            refreshAdapter()
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
+                        // Tangani jika terjadi kegagalan koneksi atau permintaan
+                        // Kembalikan status ke kondisi sebelumnya jika permintaan gagal
+                        data.status = if (data.status == "finished") "unfinished" else "finished"
+                        // Perbarui tampilan karena perubahan status gagal terkirim ke server
+                        refreshAdapter()
+
+                    }
+                })
+            }
+
         })
         listTugas.adapter = tugas2Adapter
+
     }
 
     private fun showDeleteConfirmationDialog(note: Tugas2Model.Data) {
