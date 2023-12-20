@@ -11,17 +11,16 @@ import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.Toast
-import com.example.marinugas.data.ListTugas
 import com.example.marinugas.databinding.ActivityMainBinding
-import com.example.marinugas.rest.RetrofitClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.app.Dialog
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding:ActivityMainBinding
     private lateinit var tugas2Adapter: Tugas2Adapter
     private lateinit var imgAdd: FloatingActionButton
     private lateinit var listTugas: RecyclerView
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupView() {
         listTugas = findViewById(R.id.list_tugas)
         imgAdd = findViewById(R.id.img_add)
+
     }
 
     private fun setupList() {
@@ -56,6 +56,52 @@ class MainActivity : AppCompatActivity() {
                         .putExtra("judul", judul)
                 )
             }
+            override fun onDelete(note: Tugas2Model.Data){
+                showDeleteConfirmationDialog(note)
+            }
+
+
+        })
+        listTugas.adapter = tugas2Adapter
+    }
+
+    private fun setupListener(){
+        imgAdd.setOnClickListener {
+            startActivity(Intent(this, create_tugas::class.java))
+        }
+    }
+
+    private fun showDeleteConfirmationDialog(note: Tugas2Model.Data) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_delete_confirmation)
+
+        val btnCancel = dialog.findViewById<Button>(R.id.btnCancel)
+        val btnDelete = dialog.findViewById<Button>(R.id.btnDelete)
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnDelete.setOnClickListener {
+            api.delete(note.id!!).enqueue(object : Callback<Submit2Model> {
+                override fun onResponse(call: Call<Submit2Model>, response: Response<Submit2Model>) {
+                    if (response.isSuccessful) {
+                        val submit = response.body()
+                        Toast.makeText(
+                            applicationContext,
+                            submit!!.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        getTugas()
+                    }
+                }
+
+                override fun onFailure(call: Call<Submit2Model>, t: Throwable) {
+                }
+            })
+
+            dialog.dismiss()
+        }
 
             override fun onDelete(note: Tugas2Model.Data) {
                 api.delete(note.id!!)
@@ -88,9 +134,10 @@ class MainActivity : AppCompatActivity() {
         imgAdd.setOnClickListener {
             startActivity(Intent(this, create_tugas::class.java))
         }
+        dialog.show()
     }
 
-    private fun getTugas() {
+    private fun getTugas(){
         api.data().enqueue(object : Callback<Tugas2Model> {
             override fun onResponse(call: Call<Tugas2Model>, response: Response<Tugas2Model>) {
                 if (response.isSuccessful) {
@@ -118,4 +165,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 }

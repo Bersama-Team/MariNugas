@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlin.collections.ArrayList
+import android.app.AlertDialog
 
 class Tugas2Adapter(
     private var tugas: ArrayList<Tugas2Model.Data>,
@@ -93,4 +94,5 @@ class Tugas2Adapter(
         fun onClick(judul: Tugas2Model.Data)
         fun onDelete(judul: Tugas2Model.Data)
     }
+
 }
