@@ -132,7 +132,7 @@ class detail_tugas : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Ti
         savedHour = hourOfDay
         savedMinute = minute
         val btn_timePicker = findViewById<Button>(R.id.btn_timePicker)
-        btn_timePicker.text = " $savedHour : $savedMinute"
+        btn_timePicker.text = "$savedHour:$savedMinute"
 
     }
 }

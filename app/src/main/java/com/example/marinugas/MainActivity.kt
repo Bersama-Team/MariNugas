@@ -9,9 +9,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.Toast
-import com.example.marinugas.data.ListTugas
 import com.example.marinugas.databinding.ActivityMainBinding
-import com.example.marinugas.rest.RetrofitClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private val api by lazy { Api2Retrofit().endpoint }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val dataList = mutableListOf<TugasModel>()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
