@@ -27,7 +27,8 @@ class detail_tugas : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Ti
     private lateinit var btn_timePicker: Button
     private lateinit var img_back: ImageView
     private val api by lazy { Api2Retrofit().endpoint }
-    private val judul by lazy { intent.getSerializableExtra("judul") as Tugas2Model.Data}
+    private val judul by lazy { intent.getSerializableExtra("judul")
+            as Tugas2Model.Data}
 
     var day = 0
     var month = 0
